@@ -857,14 +857,18 @@ a:focus {
 .portfolio .portfolio-img {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    padding-top: 95%; /* Increased from 85% to make them even longer */
+    height: 0;
 }
 
 .portfolio .portfolio-img img {
-    position: relative;
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover;
-    transform: scale(1.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the container, possibly cropping */
     transition: .5s;
 }
 
@@ -1392,20 +1396,34 @@ a:focus {
     padding: 45px 0 15px 0;
 }
 
+.blog .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .blog .blog-item {
     position: relative;
     margin-bottom: 30px;
+    display: flex; /* Make blog-item itself a flex container */
+    flex-direction: column; /* Stack its content vertically */
 }
 
 .blog .blog-img {
     position: relative;
-    width: 100%;
     overflow: hidden;
+    width: 100%; /* Take full width of parent col-lg-6 */
+    padding-top: 75%; /* 4:3 Aspect Ratio (height is 75% of width) */
+    height: 0; /* Important for padding-top trick */
 }
 
 .blog .blog-img img {
-    width: 100%;
-    transition: .5s;
+    position: absolute; /* Position relative to parent with padding-top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fill container width */
+    height: 100%; /* Fill container height */
+    object-fit: cover; /* Fill the container, possibly cropping */
+    transition: .3s;
 }
 
 .blog .blog-item:hover img {
@@ -1414,10 +1432,14 @@ a:focus {
 
 .blog .blog-text {
     position: relative;
-    padding: 30px;
-    border-right: 1px solid rgba(0, 0, 0, .07);
-    border-bottom: 1px solid rgba(0, 0, 0, .07);
-    border-left: 1px solid rgba(0, 0, 0, .07);
+    flex-grow: 1; /* Allow blog-text to take up available space */
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-top: none;
+    display: flex; /* Make blog-text a flex container */
+    flex-direction: column; /* Stack its content vertically */
+    justify-content: space-between; /* Distribute space between items */
 }
 
 .blog .blog-text h2 {
@@ -1426,7 +1448,8 @@ a:focus {
 }
 
 .blog .blog-text p {
-    margin-bottom: 10px;
+    flex-grow: 1; /* Allow paragraph to push button to bottom */
+    margin-bottom: 10px; /* Keep some margin */
 }
 
 .blog .blog-item a.btn {
